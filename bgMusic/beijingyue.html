@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+  <meta charset="UTF-8">
+  <meta name="Author" content="haley">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <link rel="stylesheet" href="css/bgMusic.css"/>
+  <title>背景音乐自动播放!</title>
+  <style>
+    body{
+      background-color: #5ac1df;
+    }
+
+  </style>
+</head>
+<body>
+<div class="video_exist play_yinfu" id="audio_btn" style="display: block;">
+  <div id="yinfu" class="rotate"></div>
+  <audio preload="" autoplay  id="bgMedia" src="music/bgMusic.mp3" loop onclick="bgAudio()"></audio>
+</div>
+<div id="win" name="win" ></div>
+<script src="http://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  document.all("win").style.height = document.body.scrollHeight;
+  document.addEventListener("WeixinJSBridgeReady", function () {
+    audioAutoPlay('bgMedia');//给个全局函数
+  }, false);
+  document.addEventListener('YixinJSBridgeReady', function() {
+    audioAutoPlay('bgMedia');//给个全局函数
+  }, false);
+
+  function bgAudio(){
+    var ele=$('#audio_btn');
+    ele.click(function(){
+      var audioEle = $("#bgMedia")[0];
+      if($(this).attr('class').indexOf('off') > 0){
+        $(this).removeClass('off').addClass('play_yinfu');
+        $('#yinfu').addClass('rotate');
+        audioEle.play();
+      }else{
+        $(this).removeClass('play_yinfu').addClass('off');
+        $('#yinfu').removeClass('rotate');
+        audioEle.pause();
+      }
+    });
+  }
+
+  //背景乐自动播放 s
+  function audioAutoPlay(id){//全局控制播放函数
+    var audio = document.getElementById(id),
+        play = function(){
+          audio.play();
+          document.removeEventListener("touchstart",play, false);
+        };
+    audio.play();
+    document.addEventListener("touchstart",play, false);
+  }
+
+  var isAppInside=/micromessenger/i.test(navigator.userAgent.toLowerCase())||/yixin/i.test(navigator.userAgent.toLowerCase());
+  if(!isAppInside){//给非微信易信浏览器
+    //audioAutoPlay('bgMedia');
+  }
+  $(function () {
+    bgAudio();
+  });
+  //背景乐自动播放 e
+</script>
+</body>
+</html>

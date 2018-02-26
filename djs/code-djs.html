@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+  <meta charset="UTF-8">
+  <meta name="Author" content="haley">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <title>demo-haley</title>
+</head>
+<body>
+<button type="button" id="code" class="code">请发送验证码</button>
+<script>
+  $(function(){
+    var el=$('.code')
+        , sum= 3
+        , i=sum
+        , timer=null
+        ;
+    el.click(function(){
+      update();
+      timer=setInterval(function(){
+        update();
+      },1000);
+    });
+
+    function update(){
+      if(i>0){
+        el.text("倒计时("+i--+"s)");
+        el.prop('disabled','true');
+      }else{
+        el.text("重新发送验证码");
+        i=sum;
+        el.prop('disabled','');
+        clearInterval(timer);
+      }
+    }
+  });
+</script>
+</body>
+</html>
