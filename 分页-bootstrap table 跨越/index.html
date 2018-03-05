@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title></title>
+	<link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	<link href="css/style.css?v=4.1.0" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+   
+</head>
+<body>
+<table id="table" data-mobile-responsive="true" data-click-to-select="true">
+    <thead>
+        <tr>
+            <th data-field="selectItem" data-checkbox="true"></th>
+        </tr>
+    </thead>
+</table>
+     <script src="jquery.min.js"></script>
+	 <script src="bootstrap-table/bootstrap-table.min.js"></script>
+	 <script src="bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	 <script src="bootstrap-table-object.js"></script>
+	<script type="text/javascript">
+	var Zjb={
+	 id: "table",	//表格id
+    seItem: null,		//选中的条目
+    table: null,
+    layerIndex: -1
+	};
+	/**
+ * 初始化表格的列
+ */
+Zjb.initColumn = function () {
+	  var columns = [
+	        {title: '序号',align : 'center',valign : 'middle',radio: false,checkbox:false,formatter:function (value, row, index) {  return index+1; } },
+	       {title: '展位号', field: 'standNumber', align: 'center', valign: 'middle', sortable: true}
+	      ];
+	    return columns;
+};
+	
+       $(function () {
+   var table = new BSTable(Zjb.id, "http://manual.bakerychina.com/bakery_productCompanyInfo.htm", Zjb.initColumn());
+    table.setPaginationType("client");
+    Zjb.table = table.init();
+});
+    </script>
+</body>
+</html>
