@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>后台登录_</title>
+<meta name="author" content="highsetHaley" />
+<link rel="stylesheet" type="text/css" href="login/style.css" />
+<style>
+body {
+	height: 100%;
+	background: #333333;
+	overflow: hidden;
+}
+
+canvas {
+	z-index: -1;
+	position: absolute;
+}
+</style>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="login/Particleground.js"></script>
+<script>
+	$(document).ready(function() {
+		//粒子背景特效
+		$('body').particleground({
+			dotColor : '#ce0218',
+			lineColor : '#ce0218'
+		});
+		//验证码
+		//            createCode();
+		var msg = "${msg}";
+		if(msg!=null&&msg.length>0){
+			alert("用户名或密码错误!");
+		}
+	});
+</script>
+</head>
+<body>
+	<form action="/j_spring_security_check" id="loginform" name="loginform"
+		method="post">
+		<dl class="admin_login">
+			<dt>
+				<strong>阿美赫斯</strong> <em>Management System</em>
+			</dt>
+			<dd class="user_icon">
+				<input type="text" name="j_username" id="j_username"
+					placeholder="账号" class="login_txtbx" />
+			</dd>
+			<dd class="pwd_icon">
+				<input type="password" name="j_password" id="j_password"
+					placeholder="密码" class="login_txtbx" />
+			</dd>
+			<dd>
+				<input type="submit" value="立即登陆" class="submit_btn" />
+			</dd>
+			<dd>
+				<p>© 2016-2017 highset.cn 版权所有</p>
+				<p></p>
+			</dd>
+		</dl>
+	
+	</form>
+	
+</body>
+</html>
