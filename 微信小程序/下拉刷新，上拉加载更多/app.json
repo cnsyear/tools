@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#c9394a",
+    "navigationBarTitleText": "列表demo",
+    "navigationBarTextStyle":"white",
+    "onPullDownRefresh" : true
+  }
+  
+}

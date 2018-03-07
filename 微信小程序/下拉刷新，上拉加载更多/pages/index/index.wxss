@@ -1,0 +1,32 @@
+.container{
+    height: 100%;
+    padding: 20rpx;
+}
+
+.item{
+    display: flex;
+    margin-bottom: 30rpx;
+}
+
+.img{
+    height: 200rpx;
+    flex-grow : 1;
+    flex-shrink:0;
+    width: 300rpx;
+}
+
+.text{
+    display: flex;
+    flex-shrink:1;
+    flex-grow:1;
+    padding: 10rpx;
+    flex-wrap: wrap;
+}
+
+.title{
+    font-size: 20rpx;
+}
+.description{
+    font-size: 15rpx;
+    align-self:flex-end;
+}
