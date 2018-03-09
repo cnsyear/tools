@@ -66,6 +66,7 @@ public class SelectSchemaFrame extends JFrame {
 	private JProgressBar proccebar_execute;
 	private JScrollPane scroll_schemas;
 	
+	public static String mysqldump;//mysqldump动态获取地址
 	public static String userName;//数据库连接用户名
 	public static String password;//数据库连接密码
 	private StringBuffer content;//最终生成的文本
@@ -116,6 +117,8 @@ public class SelectSchemaFrame extends JFrame {
 
 		this.jLabel11.setText("mysqldump路径：");
 		this.jText11.setText("C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysqldump");
+		
+	
 		this.btn_cancle.setText("取消");
 		this.btn_cancle.setToolTipText("");
 		this.btn_cancle.addActionListener(new ActionListener() {
@@ -450,7 +453,7 @@ public class SelectSchemaFrame extends JFrame {
 					if(!file.exists()) {
 						file.mkdirs();
 					}
-					content.append("\""+mysqldump+"\" -u "+userName+" --password="+password+" "+schema+"> "+path+"\\"+schema+"\\"+schema+"-%Ymd%.sql");
+					content.append("\""+mysqldump+"\" --no-defaults -u "+userName+" --password="+password+" "+schema+"> "+path+"\\"+schema+"\\"+schema+"-%Ymd%.sql");
 					content.append("\r\n");
 					i++;
 					SelectSchemaFrame.this.label_completed.setText(Converter.toBlank(Integer.valueOf(i)));
@@ -521,6 +524,33 @@ public class SelectSchemaFrame extends JFrame {
 				schemaList.add(schema);
 				count++;
 			}
+			
+			
+			//获取mysql的本机地址
+			String sql2 = "select @@basedir as basePath from dual;";
+			stmt = conn.prepareStatement(sql2);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				//String a = rs.getString(1);
+				//System.out.println(a);
+				mysqldump =  rs.getString(1); 
+				System.out.println(mysqldump);	
+				// G:/mysql/
+				String pf = mysqldump.substring(0, 2);
+				System.out.println(pf);
+				
+				String lj = mysqldump.substring(3, mysqldump.length() -1);
+				
+				lj = lj.replaceAll("/", "\\\\");
+				System.out.println(lj);
+				
+				mysqldump = pf+"\\"+lj+"\\bin\\mysqldump";
+				System.out.println(mysqldump);	
+				//改为动态获取 
+				this.jText11.setText(mysqldump);
+			
+			}
+			
 			
 		} catch (SQLException se) {
 			se.printStackTrace();

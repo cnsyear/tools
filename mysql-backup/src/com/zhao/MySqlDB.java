@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 
 public class MySqlDB {
 	private static final Logger log = Logger.getLogger(MySqlDB.class);
-	// ��ݿ�����
 	private String URL;
 	private String NAME;
 	private String PASS;
