@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <meta name="Author" content="haley">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/pagination.js"></script>
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <title>分页</title>
+    <style>
+        a{text-decoration: none}
+    </style>
+</head>
+<body>
+<div>
+    <h2 id="currentPage"></h2>
+    <div id="box"></div>
+    <nav class="pagination">
+        <input type="hidden" id="total_pages" value="9">
+        <input type="hidden" id="current_pages" value="6">
+        <input type="hidden" id="base_url" value="/">
+        <div class="page-links" id="page-link-box">
+
+        </div>
+        <div class="page-links">
+            <a href="" class="page-link" title="Previous Page">«</a>
+            <div id="page-link-container">
+                <span class="page-link active">1</span>
+                <a href="" class="page-link">2</a>
+                <a href="" class="page-link">3</a>
+                <a href="" class="page-link">4</a>
+                <a href="" class="page-link">5</a>
+                <a href="" class="page-link">6</a>
+                <a href="" class="page-link">7</a>
+            </div>
+            <a href="" class="page-link">»</a>
+        </div>
+    </nav>
+    <div style="height:120px;"></div>
+    <div style="border:solid 1px #ddd;margin-bottom:20px;">
+        <h4>需求分析：</h4>
+        <ul>
+            <li>第一页：显示1-4，下一页</li>
+            <li>第二页：显示1-5，上一页，下一页</li>
+            <li>第三页：显示1-6，上一页，下一页</li>
+            <li>第四页：显示1-7，上一页，下一页</li>
+            <li>第五页：显示2-8，上一页，下一页</li>
+            <li>第六页：显示3-9，上一页，下一页</li>
+            <li>第七页：显示4-9，上一页，下一页</li>
+            <li>第八页：显示5-9，上一页，下一页</li>
+            <li>第九页：显示6-9，上一页</li>
+        </ul>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
