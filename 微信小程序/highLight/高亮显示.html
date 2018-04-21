@@ -1,0 +1,103 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>高亮显示</title>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		var highLight = function(content, key, res) {
+			if (res == undefined) {
+			  res = [];
+			}
+			key = key.toUpperCase();
+			var keyLen = key.length;
+			var tmp = content.toUpperCase();
+			if (tmp.length >= keyLen && keyLen > 0) {
+
+			  var index = -1;
+			  index = tmp.indexOf(key);
+
+			  if (index != -1) {
+				var n = content.substring(0, index);
+				res.push({
+				  type: 2,
+				  text: n
+				});
+				var y = content.substring(index, index + keyLen);
+				res.push({
+				  type: 1,
+				  text: y
+				});
+				content = content.substring(index + keyLen, content.length);
+				highLight(content, key, res);
+			  } else {
+				res.push({
+				  type: 2,
+				  text: content
+				});
+			  }
+			} else {
+
+			  res.push({
+				type: 2,
+				text: content
+			  });
+			}
+			return res;
+		}
+
+		var myReplace = function (content){
+		  content = content.replace(" ","&nbsp;");
+		  if(content.indexOf(" ") != -1){
+			return myReplace(content);
+		  }
+		  return content;
+		}
+
+		
+		$(function(){
+			//模拟数据
+			var list =[];
+			list.push('N4A01');
+			list.push('E2A81');
+			list.push('E2A08');
+			list.push('E1A81');
+			list.push('N4B71');
+			list.push('E2A81');
+			list.push('E2A08');
+			list.push('E1A81');
+			list.push('E3B11');
+			list.push('E2D11');
+			list.push('E3B61');
+			list.push('WaC38');
+			list.push('W2A81');
+			list.push('W2D61');
+			list.push('WaK36');
+			list.push('W1K58');
+			list.push('W2K40');
+			list.push('W4C61');
+			list.push('W2a81');
+			list.push('W2D42');
+			list.push('W2K51');
+			
+			for(var i =0;i<list.length;i++){
+				var node =[];
+				node.push('<div style="overflow:hidden;">');
+				var arr = highLight(list[i],"A");//匹配出所有的A、a
+				for(var j =0;j<arr.length;j++){
+					var item = arr[j];
+					if(item.type==1){
+						node.push('<p style="color:red;float:left;">'+myReplace(item.text)+'</p>');
+					}else{
+					node.push('<p style="color:black;float:left;">'+myReplace(item.text)+'</p>');
+					}
+				}
+				node.push('</div>'); 
+				$("#content").append(node.join(''));
+			}
+		});
+	</script>
+</head>
+<body>
+<div id="content" ></div>
+</body>
+</html>
