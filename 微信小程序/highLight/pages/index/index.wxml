@@ -1,0 +1,13 @@
+<!--公共的wxs工具-->
+<wxs src="../../wxs/highLight.wxs" module="util" />
+<view class="container">
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view wx:for="{{list}}" wx:key="item" >
+    <view wx:for="{{util.highLight(item,'A')}}" wx:key="item" style="float:left;">
+      <text wx:if="{{item.type==1}}" decode="true" space="true" style='color:red;'>{{util.myReplace(item.text)}} </text>
+      <text wx:else decode="true" space="true">{{util.myReplace(item.text)}}</text>
+    </view>
+  </view>
+</view>
