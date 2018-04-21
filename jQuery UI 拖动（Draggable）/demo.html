@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI 拖动（Draggable）</title>
+  <script src="jquery.min.js"></script>
+  <script src="jquery-ui-1.10.4.min.js"></script>
+  <style>
+  ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+  li { margin: 5px; padding: 5px; width: 150px; border: 1px solid red;<!-- float:left;--> }
+  </style>
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable({
+      revert: true
+    });
+    $( "ul, li" ).disableSelection();
+  });
+  //获取排序的位置
+  function getIndex(){
+	$("#sortable li").each(function(index,elem){
+		var id = $(elem).data("id");//Id==>可以是数据库的id
+		 console.log(id+"======index:"+index );
+	});
+  }
+  
+  </script>
+</head>
+<body>
+<ul id="sortable" >
+  <li class="ui-state-default" data-id="1">Item 1</li>
+  <li class="ui-state-default" data-id="2">Item 2</li>
+  <li class="ui-state-default" data-id="3">Item 3</li>
+  <li class="ui-state-default" data-id="4">Item 4</li>
+  <li class="ui-state-default" data-id="5">Item 5</li>
+  <li class="ui-state-default" data-id="6">Item 6</li>
+  <li class="ui-state-default" data-id="7">Item 7</li>
+  <li class="ui-state-default" data-id="8">Item 8</li>
+  <li class="ui-state-default" data-id="9">Item 9</li>
+  <li class="ui-state-default" data-id="10">Item 10</li>
+</ul>
+ <button onclick="getIndex()">获取位置</button>
+</body>
+</html>
