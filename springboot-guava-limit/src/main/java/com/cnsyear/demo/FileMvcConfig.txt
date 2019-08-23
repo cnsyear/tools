@@ -1,0 +1,20 @@
+package com.cnsyear.demo;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * @Description 自定义文件访问配置
+ * @Author jie.zhao
+ * @Date 2019/8/20 18:10
+ */
+@Configuration
+public class FileMvcConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+         registry.addResourceHandler("/images/**")
+                .addResourceLocations("classpath:/images/");
+    }
+}
